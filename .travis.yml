@@ -2,7 +2,7 @@ language: php
 php:
   - '7.0'
 
-script: phpunit --coverage-text
+script: phpunit
 env:
   - SYMFONY_VERSION="dev-master" DB=mysql
 
