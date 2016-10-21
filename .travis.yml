@@ -4,7 +4,7 @@ php:
 
 script: phpunit
 env:
-  - SYMFONY_VERSION="dev-master" DB=mysql
+    - SYMFONY_VERSION="dev-master" DB=mysql
 
 notifications:
   slack: ouloulouteam:4F2CdbA3tQcHvyoczPoh9lcK
