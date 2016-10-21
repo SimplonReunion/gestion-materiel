@@ -3,3 +3,10 @@ php:
   - '7.0'
 
 script: phpunit --coverage-text
+env:
+  - SYMFONY_VERSION="dev-master" DB=mysql
+
+notifications:
+  slack:
+    on_success: always
+    on_failure: always
