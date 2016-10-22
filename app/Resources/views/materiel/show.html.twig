@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Materiel</h1>
+
+    <table>
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ materiel.id }}</td>
+        </tr>
+        <tr>
+            <th>Type</th>
+            <td>{{ materiel.type }}</td>
+        </tr>
+        <tr>
+            <th>Autre</th>
+            <td>{{ materiel.autre }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ materiel.description }}</td>
+        </tr>
+        <tr>
+            <th>Disponible</th>
+            <td>{% if materiel.disponible %}Yes{% else %}No{% endif %}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('materiel_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('materiel_edit', { 'id': materiel.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+            <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
