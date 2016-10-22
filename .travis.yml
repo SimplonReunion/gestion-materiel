@@ -23,4 +23,4 @@ notifications:
     on_failure: always
 
 after_success:
-  - bash <(curl --data-binary @codecov.yml https://codecov.io/validate)
+    - bash <(curl --data-binary @codecov.yml https://codecov.io/validate)
