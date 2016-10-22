@@ -3,6 +3,10 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\DBAL\Types\MaterielType;
+use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
+
+
 
 /**
  * Materiel
@@ -23,8 +27,8 @@ class Materiel
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="type", type="string", length=255)
+     * @ORM\Column(name="type", type="MaterielType", nullable=false)
+     * @DoctrineAssert\Enum(entity="AppBundle\DBAL\Types\MaterielType")
      */
     private $type;
 
