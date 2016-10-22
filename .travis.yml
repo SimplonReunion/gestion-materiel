@@ -15,8 +15,12 @@ before_script:
 
 script:
     - phpunit --configuration phpunit.xml.dist --coverage-text
+    - phpunit --coverage-clover=coverage.xml
 
 notifications:
     slack: ouloulouteam:4F2CdbA3tQcHvyoczPoh9lcK
     on_success: always
     on_failure: always
+
+after_success:
+    - bash <(curl -s https://codecov.io/bash)

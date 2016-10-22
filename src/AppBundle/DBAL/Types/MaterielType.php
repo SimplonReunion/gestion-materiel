@@ -37,7 +37,7 @@ final class MaterielType extends AbstractEnumType
         self::RADIATEUR       => 'Radiateur',
         self::CARTE_GRAPHIQUE => 'Carte Graphique',
         self::CARTE_MERE      => 'Carte Mère',
-        self::AUTRE           => 'AUTRE'
+        self::AUTRE           => 'Autre'
     ];
 
 }
