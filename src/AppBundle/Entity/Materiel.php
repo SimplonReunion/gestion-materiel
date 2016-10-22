@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use AppBundle\DBAL\Types\MaterielType;
 use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
 
 
@@ -160,4 +159,3 @@ class Materiel
         return $this->disponible;
     }
 }
-
