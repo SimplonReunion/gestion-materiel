@@ -52,6 +52,11 @@ class Materiel
      */
     private $disponible;
 
+    /**
+     * @var
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Pc")
+     */
+    private $pc;
 
     /**
      * Get id
@@ -157,5 +162,29 @@ class Materiel
     public function getDisponible()
     {
         return $this->disponible;
+    }
+
+    /**
+     * Set pc
+     *
+     * @param \AppBundle\Entity\pc $pc
+     *
+     * @return Materiel
+     */
+    public function setPc(\AppBundle\Entity\pc $pc = null)
+    {
+        $this->pc = $pc;
+
+        return $this;
+    }
+
+    /**
+     * Get pc
+     *
+     * @return \AppBundle\Entity\pc
+     */
+    public function getPc()
+    {
+        return $this->pc;
     }
 }

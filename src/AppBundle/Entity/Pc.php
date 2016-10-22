@@ -25,6 +25,7 @@ class Pc
      * @var string
      *
      * @ORM\Column(name="boitier", type="string", length=255)
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Materiel", mappedBy="pc")
      */
     private $boitier;
 

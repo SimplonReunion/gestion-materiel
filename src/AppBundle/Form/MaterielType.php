@@ -14,7 +14,7 @@ class MaterielType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('type')
+            ->add('type', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', null, array())
             ->add('autre')
             ->add('description')
             ->add('disponible');

@@ -56,6 +56,8 @@ doctrine:
         #     path:     "%database_path%"
         types:
             MaterielType: AppBundle\DBAL\Types\MaterielType
+        mapping_types:
+            enum: string
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
@@ -84,8 +86,35 @@ fos_user:
     user_class: AppBundle\Entity\User
 
 easy_admin:
+    site_name: 'Gestion-Informatique'
+    design:
+        menu:
+            - { label: 'Informatique' }
+            - Pc
+            - Materiel
+            - { label: 'Users' }
+            - User
+            - Group
+
     entities:
-        - AppBundle\Entity\Materiel
-        - AppBundle\Entity\User
-        - AppBundle\Entity\Group
-        - AppBundle\Entity\Pc
+        Pc:
+            class: AppBundle\Entity\Pc
+            label: 'Pc'
+            list:
+                title: "Pc complets"
+        Materiel:
+            class: AppBundle\Entity\Materiel
+            label: 'Materiel'
+            list:
+                title: "Gestion Materiel"
+
+        User:
+            class: AppBundle\Entity\User
+            label: 'User'
+            list:
+                title: "Gestion Uttilisateur"
+        Group:
+            class: AppBundle\Entity\Group
+            label: 'Group'
+            list:
+                title: "Gestion Groupes"
