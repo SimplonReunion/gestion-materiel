@@ -6,7 +6,7 @@ php:
 services:
     - mysql
 env:
-    - SYMFONY_VERSION="dev-master" DB=mysql
+    - SYMFONY_VERSION="3.1.*" DB=mysql
 before_script:
     - composer install
     - php bin/console doctrine:database:create --env=test
