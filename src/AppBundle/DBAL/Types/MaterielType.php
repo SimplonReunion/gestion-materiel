@@ -40,4 +40,12 @@ final class MaterielType extends AbstractEnumType
         self::AUTRE           => 'Autre'
     ];
 
+    /**
+     * @return array
+     */
+    public static function getChoices()
+    {
+        return self::$choices;
+    }
+
 }

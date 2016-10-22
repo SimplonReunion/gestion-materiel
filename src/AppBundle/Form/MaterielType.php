@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class MaterielType extends AbstractType
 {
@@ -14,7 +15,9 @@ class MaterielType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('type', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', null, array())
+            ->add('type', ChoiceType::class, array(
+                'choices' => \AppBundle\DBAL\Types\MaterielType::getChoices()
+            ))
             ->add('autre')
             ->add('description')
             ->add('disponible');

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\DBAL\Types\MaterielType;
 use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
 
 
@@ -26,8 +27,7 @@ class Materiel
 
     /**
      * @var string
-     * @ORM\Column(name="type", type="MaterielType", nullable=false)
-     * @DoctrineAssert\Enum(entity="AppBundle\DBAL\Types\MaterielType")
+     * @ORM\Column(name="type", type="string", nullable=false)
      */
     private $type;
 
@@ -51,13 +51,6 @@ class Materiel
      * @ORM\Column(name="disponible", type="boolean")
      */
     private $disponible;
-
-    /**
-     * @var
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Pc")
-     */
-    private $pc;
-
     /**
      * Get id
      *
