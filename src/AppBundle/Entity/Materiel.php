@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use AppBundle\DBAL\Types\MaterielType;
 use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
 
 
@@ -52,6 +51,7 @@ class Materiel
      * @ORM\Column(name="disponible", type="boolean")
      */
     private $disponible;
+
     /**
      * Get id
      *
@@ -156,29 +156,5 @@ class Materiel
     public function getDisponible()
     {
         return $this->disponible;
-    }
-
-    /**
-     * Set pc
-     *
-     * @param \AppBundle\Entity\pc $pc
-     *
-     * @return Materiel
-     */
-    public function setPc(\AppBundle\Entity\pc $pc = null)
-    {
-        $this->pc = $pc;
-
-        return $this;
-    }
-
-    /**
-     * Get pc
-     *
-     * @return \AppBundle\Entity\pc
-     */
-    public function getPc()
-    {
-        return $this->pc;
     }
 }
