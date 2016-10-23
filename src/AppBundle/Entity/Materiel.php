@@ -27,7 +27,8 @@ class Materiel
 
     /**
      * @var string
-     * @ORM\Column(name="type", type="string", nullable=false)
+     * @ORM\Column(name="type", type="MaterielType", nullable=false)
+     * @DoctrineAssert\Enum(entity="AppBundle\DBAL\Types\MaterielType")
      */
     private $type;
 

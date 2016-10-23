@@ -84,37 +84,3 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: AppBundle\Entity\User
-
-easy_admin:
-    site_name: 'Gestion-Informatique'
-    design:
-        menu:
-            - { label: 'Informatique' }
-            - Pc
-            - Materiel
-            - { label: 'Users' }
-            - User
-            - Group
-
-    entities:
-        Pc:
-            class: AppBundle\Entity\Pc
-            label: 'Pc'
-            list:
-                title: "Pc complets"
-        Materiel:
-            class: AppBundle\Entity\Materiel
-            label: 'Materiel'
-            list:
-                title: "Gestion Materiel"
-
-        User:
-            class: AppBundle\Entity\User
-            label: 'User'
-            list:
-                title: "Gestion Uttilisateur"
-        Group:
-            class: AppBundle\Entity\Group
-            label: 'Group'
-            list:
-                title: "Gestion Groupes"
