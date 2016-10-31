@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Pc</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ pc.id }}</td>
+            </tr>
+            <tr>
+                <th>Boitier</th>
+                <td>{{ pc.boitier }}</td>
+            </tr>
+            <tr>
+                <th>Alimentation</th>
+                <td>{{ pc.alimentation }}</td>
+            </tr>
+            <tr>
+                <th>Hdd</th>
+                <td>{{ pc.hdd }}</td>
+            </tr>
+            <tr>
+                <th>Ssd</th>
+                <td>{{ pc.ssd }}</td>
+            </tr>
+            <tr>
+                <th>Graveur</th>
+                <td>{{ pc.graveur }}</td>
+            </tr>
+            <tr>
+                <th>Processeur</th>
+                <td>{{ pc.processeur }}</td>
+            </tr>
+            <tr>
+                <th>Cartemere</th>
+                <td>{{ pc.carteMere }}</td>
+            </tr>
+            <tr>
+                <th>Memoire</th>
+                <td>{{ pc.memoire }}</td>
+            </tr>
+            <tr>
+                <th>Radiateur</th>
+                <td>{{ pc.radiateur }}</td>
+            </tr>
+            <tr>
+                <th>Systemeexploitation</th>
+                <td>{{ pc.systemeExploitation }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ pc.prix }}</td>
+            </tr>
+            <tr>
+                <th>Vendable</th>
+                <td>{% if pc.vendable %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Cartegraphique</th>
+                <td>{{ pc.carteGraphique }}</td>
+            </tr>
+            <tr>
+                <th>Ecran</th>
+                <td>{{ pc.ecran }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('pc_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('pc_edit', { 'id': pc.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

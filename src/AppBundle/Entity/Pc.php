@@ -24,106 +24,107 @@ class Pc
     /**
      * @var string
      *
-     * @ORM\Column(name="boitier", type="string", length=255)
+     * @ORM\Column(name="boitier", type="string", length=255, nullable = true)
      */
     private $boitier;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="alimentation", type="string", length=255)
+     * @ORM\Column(name="alimentation", type="string", length=255, nullable = true)
      */
     private $alimentation;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="hdd", type="string", length=255)
+     * @ORM\Column(name="hdd", type="string", length=255, nullable = true)
      */
     private $hdd;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ssd", type="string", length=255)
+     * @ORM\Column(name="ssd", type="string", length=255, nullable = true)
      */
     private $ssd;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="graveur", type="string", length=255)
+     * @ORM\Column(name="graveur", type="string", length=255, nullable = true)
      */
     private $graveur;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="processeur", type="string", length=255)
+     * @ORM\Column(name="processeur", type="string", length=255, nullable = true)
      */
     private $processeur;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="carteMere", type="string", length=255)
+     * @ORM\Column(name="carteMere", type="string", length=255, nullable = true)
      */
     private $carteMere;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="memoire", type="string", length=255)
+     * @ORM\Column(name="memoire", type="string", length=255, nullable = true)
      */
     private $memoire;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="radiateur", type="string", length=255)
+     * @ORM\Column(name="radiateur", type="string", length=255, nullable = true)
      */
     private $radiateur;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="systemeExploitation", type="string", length=255)
+     * @ORM\Column(name="systemeExploitation", type="string", length=255, nullable = true)
      */
     private $systemeExploitation;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="prix", type="integer")
+     * @ORM\Column(name="prix", type="integer", nullable = true)
      */
     private $prix;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="vendable", type="boolean")
+     * @ORM\Column(name="vendable", type="boolean", nullable = true)
      */
     private $vendable;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="carteGraphique", type="string", length=255)
+     * @ORM\Column(name="carteGraphique", type="string", length=255, nullable = true)
      */
     private $carteGraphique;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ecran", type="string", length=255)
+     * @ORM\Column(name="ecran", type="string", length=255, nullable = true)
      */
     private $ecran;
+
 
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -387,7 +388,7 @@ class Pc
     /**
      * Get prix
      *
-     * @return int
+     * @return integer
      */
     public function getPrix()
     {
@@ -411,7 +412,7 @@ class Pc
     /**
      * Get vendable
      *
-     * @return bool
+     * @return boolean
      */
     public function getVendable()
     {
