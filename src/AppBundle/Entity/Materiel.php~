@@ -160,3 +160,4 @@ class Materiel
         return $this->disponible;
     }
 }
+
