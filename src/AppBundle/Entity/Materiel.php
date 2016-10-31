@@ -6,7 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
 
 
-
 /**
  * Materiel
  *
@@ -25,11 +24,17 @@ class Materiel
     private $id;
 
     /**
-     * @var string
      * @ORM\Column(name="type", type="MaterielType", nullable=false)
      * @DoctrineAssert\Enum(entity="AppBundle\DBAL\Types\MaterielType")
      */
     private $type;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="intitule", type="string", length=255)
+     */
+    private $intitule;
 
     /**
      * @var string
@@ -65,7 +70,6 @@ class Materiel
     /**
      * Set type
      *
-     * @param string $type
      *
      * @return Materiel
      */
@@ -79,7 +83,6 @@ class Materiel
     /**
      * Get type
      *
-     * @return string
      */
     public function getType()
     {
@@ -156,5 +159,29 @@ class Materiel
     public function getDisponible()
     {
         return $this->disponible;
+    }
+
+    /**
+     * Set intitule
+     *
+     * @param string $intitule
+     *
+     * @return Materiel
+     */
+    public function setIntitule($intitule)
+    {
+        $this->intitule = $intitule;
+
+        return $this;
+    }
+
+    /**
+     * Get intitule
+     *
+     * @return string
+     */
+    public function getIntitule()
+    {
+        return $this->intitule;
     }
 }
