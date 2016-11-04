@@ -4,7 +4,48 @@
     <h1>Pc edit</h1>
 
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
+    {{ form_label(edit_form.boitier) }}
+    {{ form_widget(edit_form.boitier) }}
+    {{ form_errors(edit_form.boitier) }}
+    {{ form_label(edit_form.alimentation) }}
+    {{ form_widget(edit_form.alimentation) }}
+    {{ form_errors(edit_form.alimentation) }}
+    {{ form_label(edit_form.hdd) }}
+    {{ form_widget(edit_form.hdd) }}
+    {{ form_errors(edit_form.hdd) }}
+    {{ form_label(edit_form.ssd) }}
+    {{ form_widget(edit_form.ssd) }}
+    {{ form_errors(edit_form.ssd) }}
+    {{ form_label(edit_form.graveur) }}
+    {{ form_widget(edit_form.graveur) }}
+    {{ form_errors(edit_form.graveur) }}
+    {{ form_label(edit_form.processeur) }}
+    {{ form_widget(edit_form.processeur) }}
+    {{ form_errors(edit_form.processeur) }}
+    {{ form_label(edit_form.carteMere) }}
+    {{ form_widget(edit_form.carteMere) }}
+    {{ form_errors(edit_form.carteMere) }}
+    {{ form_label(edit_form.memoire) }}
+    {{ form_widget(edit_form.memoire) }}
+    {{ form_errors(edit_form.memoire) }}
+    {{ form_label(edit_form.radiateur) }}
+    {{ form_widget(edit_form.radiateur) }}
+    {{ form_errors(edit_form.radiateur) }}
+    {{ form_label(edit_form.systemeExploitation) }}
+    {{ form_widget(edit_form.systemeExploitation) }}
+    {{ form_errors(edit_form.systemeExploitation) }}
+    {{ form_label(edit_form.carteGraphique) }}
+    {{ form_widget(edit_form.carteGraphique) }}
+    {{ form_errors(edit_form.carteGraphique) }}
+    {{ form_label(edit_form.ecran) }}
+    {{ form_widget(edit_form.ecran) }}
+    {{ form_errors(edit_form.ecran) }}
+    {{ form_label(edit_form.prix) }}
+    {{ form_widget(edit_form.prix) }}
+    {{ form_errors(edit_form.prix) }}
+    {{ form_label(edit_form.vendable) }}
+    {{ form_widget(edit_form.vendable) }}
+    {{ form_errors(edit_form.vendable) }}
         <input type="submit" value="Edit" />
     {{ form_end(edit_form) }}
 

@@ -5,9 +5,17 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 
 class PcType extends AbstractType {
 
+
+    private $authorization;
+
+    public function __construct(AuthorizationChecker $authorizationChecker)
+    {
+        $this->authorization = $authorizationChecker;
+    }
     /**
      * {@inheritdoc}
      */
@@ -25,9 +33,11 @@ class PcType extends AbstractType {
                 ->add('systemeExploitation')
                 ->add('carteGraphique')
                 ->add('ecran')
-                ->add('prix')
-                ->add('vendable')
-        ;
+                ->add('prix');
+        if ($this->authorization->isGranted('QSDSQD')) {
+            $builder->add('vendable');
+
+        }
     }
 
     /**
