@@ -8,6 +8,7 @@
         <tr>
             <th>Id</th>
             <th>Type</th>
+            <th>Intitulé</th>
             <th>Autre</th>
             <th>Description</th>
             <th>Disponible</th>
@@ -19,6 +20,7 @@
             <tr>
                 <td><a href="{{ path('materiel_show', { 'id': materiel.id }) }}">{{ materiel.id }}</a></td>
                 <td>{{ materiel.type }}</td>
+                <td>{{ materiel.intitule }}</td>
                 <td>{{ materiel.autre }}</td>
                 <td>{{ materiel.description }}</td>
                 <td>{% if materiel.disponible %}Yes{% else %}No{% endif %}</td>

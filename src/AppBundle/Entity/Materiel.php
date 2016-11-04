@@ -39,7 +39,7 @@ class Materiel
     /**
      * @var string
      *
-     * @ORM\Column(name="autre", type="string", length=255)
+     * @ORM\Column(name="autre", type="string", length=255, nullable=true)
      */
     private $autre;
 
