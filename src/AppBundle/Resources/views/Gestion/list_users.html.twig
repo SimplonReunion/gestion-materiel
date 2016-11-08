@@ -1,0 +1,38 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:Gestion:ListUsers{% endblock %}
+
+{% block body %}
+<section id="gestion">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <table class="bordered">
+          <thead>
+            <tr>
+              <th>Nom d'utilisateur</th>
+              <th>Roles</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for user in listeUsers %}
+            <tr>
+              <td>{{user.username}}</td>
+              {% if 'ROLE_CHEF_ATELIER' in user.roles %}
+              <td>Chef d'atelier</td>
+              {% elseif 'ROLE_TECH' in user.roles %}
+              <td>Technicien</td>
+              {% elseif 'ROLE_USER' in user.roles %}
+              <td>Utilisateur</td>
+              {% endif %}
+              <td><a class="btn btn-default" href="{{ path('app_gestion_manage', {'id':  user.id  }) }}">edit</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>{% endblock %}

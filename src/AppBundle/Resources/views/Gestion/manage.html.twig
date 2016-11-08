@@ -1,0 +1,19 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:Gestion:Manage{% endblock %}
+
+{% block body %}
+  {{form_start(edit_form)}}
+
+    <div class="form-group">
+      <label for="formGroupExampleInput">Nom d'utilisateur</label>
+        {{form_widget(edit_form.username)}}
+    </div>
+    <div class="checkbox">
+      <label>
+        {{form_widget(edit_form.roles)}}
+      </label>
+      <button type="submit" class="btn btn-default">Enregistrer</button>
+      <a href="{{ path('app_gestion_listusers') }}" class="btn btn-default">Retour</a>
+ {{form_end(edit_form)}}
+{% endblock %}

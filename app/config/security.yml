@@ -31,3 +31,5 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/materiel, role: ROLE_TECH }
         - { path: ^/pc, role: ROLE_TECH }
+
+        
