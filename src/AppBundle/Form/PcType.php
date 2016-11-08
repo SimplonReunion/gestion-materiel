@@ -34,7 +34,7 @@ class PcType extends AbstractType {
                 ->add('carteGraphique')
                 ->add('ecran')
                 ->add('prix');
-        if ($this->authorization->isGranted('QSDSQD')) {
+        if ($this->authorization->isGranted('ROLE_CHEF_ATELIER')) {
             $builder->add('vendable');
 
         }

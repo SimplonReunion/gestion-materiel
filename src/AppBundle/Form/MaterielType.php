@@ -22,6 +22,7 @@ class MaterielType extends AbstractType
                 ->add('intitule')
                 ->add('description')
                 ->add('disponible');
+                // ->add('prix');
     }
 
     /**
