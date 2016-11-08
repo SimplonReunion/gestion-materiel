@@ -58,6 +58,13 @@ class Materiel
     private $disponible;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="prix", type="integer", nullable = true)
+     */
+    private $prix;
+
+    /**
      * Get id
      *
      * @return int
@@ -183,5 +190,29 @@ class Materiel
     public function getIntitule()
     {
         return $this->intitule;
+    }
+
+    /**
+     * Set prix
+     *
+     * @param integer $prix
+     *
+     * @return Pc
+     */
+    public function setPrix($prix)
+    {
+        $this->prix = $prix;
+
+        return $this;
+    }
+
+    /**
+     * Get prix
+     *
+     * @return integer
+     */
+    public function getPrix()
+    {
+        return $this->prix;
     }
 }
