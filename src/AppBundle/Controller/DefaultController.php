@@ -20,7 +20,7 @@ class DefaultController extends Controller {
 
         $em = $this->getDoctrine()->getManager();
 
-        $pcs = $em->getRepository('AppBundle:Pc')->findBy(['vendable' => 1]);
+        $pcs = $em->getRepository('AppBundle:Pc')->findBy(['vendable' => 'à vendre']);
 
         return $this->render('default/index.html.twig', array(
                     'pcs' => $pcs,

@@ -18,7 +18,7 @@
                 <th>Radiateur</th>
                 <th>Systemeexploitation</th>
                 <th>Prix</th>
-                <th>Vendable</th>
+                <th>Statut</th>
                 <th>Cartegraphique</th>
                 <th>Ecran</th>
                 <th>Actions</th>
@@ -39,7 +39,7 @@
                 <td>{{ pc.radiateur }}</td>
                 <td>{{ pc.systemeExploitation }}</td>
                 <td>{{ pc.prix }}</td>
-                <td>{% if pc.vendable %}Yes{% else %}No{% endif %}</td>
+                <td>{{ pc.vendable }}</td>
                 <td>{{ pc.carteGraphique }}</td>
                 <td>{{ pc.ecran }}</td>
                 <td>

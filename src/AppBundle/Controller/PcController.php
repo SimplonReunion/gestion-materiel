@@ -8,6 +8,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Pc controller.
@@ -41,6 +43,14 @@ class PcController extends Controller {
     public function newAction(Request $request) {
         $pc = new Pc();
 
+        // Get our "authorization_checker" Object
+       $auth_checker = $this->get('security.authorization_checker');
+       // Check for Roles on the $auth_checker
+       $isRoleChef = $auth_checker->isGranted('ROLE_CHEF_ATELIER');
+       // Test if user have ROLE_CHEF_ATELIER
+       $isRoleTech = $auth_checker->isGranted('ROLE_TECH');
+
+
         $em = $this->getDoctrine()->getManager();
         $materiels = $em->getRepository('AppBundle:Materiel')->findBy(['disponible' => 1]);
 
@@ -57,6 +67,8 @@ class PcController extends Controller {
         $carte_graphique = array();
         $ecran = array();
         $autre = array();
+        $vendable = array();
+
 
         foreach ($materiels as $value) {
             if ($value->getType() == "BOITIER") {
@@ -86,8 +98,8 @@ class PcController extends Controller {
                 $autre[$value->getAutre()] = $value->getAutre();
             }
         }
-
-
+        if ($isRoleTech) {
+          # code...
         $form = $this->createFormBuilder($pc)
                 ->add('boitier', ChoiceType::class, array(
                     'choices' => $boitier
@@ -125,18 +137,78 @@ class PcController extends Controller {
                 ->add('ecran', ChoiceType::class, array(
                     'choices' => $ecran
                 ))
+                ->add('vendable', ChoiceType::class, array(
+                    'choices' => array ('pret à être vendu' => 'pret à être vendu','non classé' => 'non classé')
+                ))
+
+
+
                 ->add('prix')
-                ->add('vendable')
                 ->getForm();
         $form->handleRequest($request);
+      }
+      if ($isRoleChef) {
+        # code...
+      $form = $this->createFormBuilder($pc)
+              ->add('boitier', ChoiceType::class, array(
+                  'choices' => $boitier
+              ))
+              ->add('alimentation', ChoiceType::class, array(
+                  'choices' => $alimentation
+              ))
+              ->add('hdd', ChoiceType::class, array(
+                  'choices' => $hdd
+              ))
+              ->add('ssd', ChoiceType::class, array(
+                  'choices' => $ssd
+              ))
+              ->add('graveur', ChoiceType::class, array(
+                  'choices' => $graveur
+              ))
+              ->add('processeur', ChoiceType::class, array(
+                  'choices' => $processeur
+              ))
+              ->add('carteMere', ChoiceType::class, array(
+                  'choices' => $carte_mere
+              ))
+              ->add('memoire', ChoiceType::class, array(
+                  'choices' => $memoire
+              ))
+              ->add('radiateur', ChoiceType::class, array(
+                  'choices' => $radiateur
+              ))
+              ->add('systemeExploitation', ChoiceType::class, array(
+                  'choices' => $systeme_exploitation
+              ))
+              ->add('carteGraphique', ChoiceType::class, array(
+                  'choices' => $carte_graphique
+              ))
+              ->add('ecran', ChoiceType::class, array(
+                  'choices' => $ecran
+              ))
+              ->add('vendable', ChoiceType::class, array(
+                  'choices' => array ('pret à être vendu' => 'pret à être vendu','à vendre' => 'à vendre')
+              ))
 
-        
+
+
+              ->add('prix')
+              ->getForm();
+      $form->handleRequest($request);
+    }
+
+
+
+
+
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
-            $em->persist($pc);            
+            $em->persist($pc);
             $em->flush();
             return $this->redirectToRoute('pc_index');
         }
+
         // Create the form view
         return $this->render('pc/new.html.twig', array(
                     'pc' => $pc,
@@ -196,6 +268,7 @@ class PcController extends Controller {
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            
 
             return $this->redirectToRoute('pc_edit', array('id' => $pc->getId()));
         }
