@@ -99,11 +99,13 @@ class Pc
     private $prix;
 
     /**
-     * @var bool
+     * @var string
      *
-     * @ORM\Column(name="vendable", type="boolean", nullable = true)
+     * @ORM\Column(name="vendable", type="string", length=255, nullable = true)
      */
     private $vendable;
+
+
 
     /**
      * @var string
@@ -395,29 +397,6 @@ class Pc
         return $this->prix;
     }
 
-    /**
-     * Set vendable
-     *
-     * @param boolean $vendable
-     *
-     * @return Pc
-     */
-    public function setVendable($vendable)
-    {
-        $this->vendable = $vendable;
-
-        return $this;
-    }
-
-    /**
-     * Get vendable
-     *
-     * @return boolean
-     */
-    public function getVendable()
-    {
-        return $this->vendable;
-    }
 
     /**
      * Set carteGraphique
@@ -465,5 +444,29 @@ class Pc
     public function getEcran()
     {
         return $this->ecran;
+    }
+
+    /**
+     * Set vendable
+     *
+     * @param string $vendable
+     *
+     * @return Pc
+     */
+    public function setVendable($vendable)
+    {
+        $this->vendable = $vendable;
+
+        return $this;
+    }
+
+    /**
+     * Get vendable
+     *
+     * @return string
+     */
+    public function getVendable()
+    {
+        return $this->vendable;
     }
 }

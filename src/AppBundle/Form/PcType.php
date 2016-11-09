@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class PcType extends AbstractType {
 
@@ -21,6 +22,7 @@ class PcType extends AbstractType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
+
         $builder->add('boitier')
                 ->add('alimentation')
                 ->add('hdd')
@@ -34,11 +36,13 @@ class PcType extends AbstractType {
                 ->add('carteGraphique')
                 ->add('ecran')
                 ->add('prix');
-        if ($this->authorization->isGranted('ROLE_CHEF_ATELIER')) {
+        if ($this->authorization->isGranted('ROLE_TECH')) {
             $builder->add('vendable');
 
         }
+
     }
+
 
     /**
      * {@inheritdoc}
