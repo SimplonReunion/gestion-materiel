@@ -3,13 +3,11 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Pc;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Pc controller.
@@ -72,30 +70,30 @@ class PcController extends Controller {
 
         foreach ($materiels as $value) {
             if ($value->getType() == "BOITIER") {
-                $boitier[$value->getAutre()] = $value->getAutre();
+                $boitier[$value->getIntitule()] = $value->getIntitule();
             }
             if ($value->getType() == "ALIMENTATION") {
-                $alimentation[$value->getAutre()] = $value->getAutre();
+                $alimentation[$value->getIntitule()] = $value->getIntitule();
             }
             if ($value->getType() == "HDD") {
-                $hdd[$value->getAutre()] = $value->getAutre();
+                $hdd[$value->getIntitule()] = $value->getIntitule();
             } if ($value->getType() == "SSD") {
-                $ssd[$value->getAutre()] = $value->getAutre();
+                $ssd[$value->getIntitule()] = $value->getIntitule();
             } if ($value->getType() == "GRAVEUR") {
-                $graveur[$value->getAutre()] = $value->getAutre();
+                $graveur[$value->getIntitule()] = $value->getIntitule();
             } if ($value->getType() == "PROCESSEUR") {
-                $processeur[$value->getAutre()] = $value->getAutre();
+                $processeur[$value->getIntitule()] = $value->getIntitule();
             } if ($value->getType() == "CARTE MERE") {
-                $carte_mere[$value->getAutre()] = $value->getAutre();
+                $carte_mere[$value->getIntitule()] = $value->getIntitule();
             } if ($value->getType() == "MEMOIRE") {
-                $memoire[$value->getAutre()] = $value->getAutre();
+                $memoire[$value->getIntitule()] = $value->getIntitule();
             } if ($value->getType() == "RADIATEUR") {
-                $radiateur[$value->getAutre()] = $value->getAutre();
+                $radiateur[$value->getIntitule()] = $value->getIntitule();
             }
             if ($value->getType() == "CARTE GRAPHIQUE") {
-                $carte_graphique[$value->getAutre()] = $value->getAutre();
+                $carte_graphique[$value->getIntitule()] = $value->getIntitule();
             } if ($value->getType() == "AUTRE") {
-                $autre[$value->getAutre()] = $value->getAutre();
+                $autre[$value->getIntitule()] = $value->getIntitule();
             }
         }
         if ($isRoleTech) {
@@ -256,6 +254,21 @@ class PcController extends Controller {
     }
 
     /**
+     * Creates a form to delete a pc entity.
+     *
+     * @param Pc $pc The pc entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm(Pc $pc)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('pc_delete', array('id' => $pc->getId())))
+            ->setMethod('DELETE')
+            ->getForm();
+    }
+
+    /**
      * Displays a form to edit an existing pc entity.
      *
      * @Route("/{id}/edit", name="pc_edit")
@@ -268,7 +281,7 @@ class PcController extends Controller {
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-            
+
 
             return $this->redirectToRoute('pc_edit', array('id' => $pc->getId()));
         }
@@ -297,21 +310,6 @@ class PcController extends Controller {
         }
 
         return $this->redirectToRoute('pc_index');
-    }
-
-    /**
-     * Creates a form to delete a pc entity.
-     *
-     * @param Pc $pc The pc entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Pc $pc) {
-        return $this->createFormBuilder()
-                        ->setAction($this->generateUrl('pc_delete', array('id' => $pc->getId())))
-                        ->setMethod('DELETE')
-                        ->getForm()
-        ;
     }
 
 }
