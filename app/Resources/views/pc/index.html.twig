@@ -26,6 +26,7 @@
         </thead>
         <tbody>
         {% for pc in pcs %}
+          
             <tr>
                 <td><a href="{{ path('pc_show', { 'id': pc.id }) }}">{{ pc.id }}</a></td>
                 <td>{{ pc.boitier }}</td>

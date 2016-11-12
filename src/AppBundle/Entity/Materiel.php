@@ -29,6 +29,7 @@ class Materiel
      */
     private $type;
 
+    
     /**
      * @var string
      *
