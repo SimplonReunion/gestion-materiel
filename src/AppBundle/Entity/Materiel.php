@@ -1,11 +1,7 @@
 <?php
-
 namespace AppBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
-
-
 /**
  * Materiel
  *
@@ -22,13 +18,11 @@ class Materiel
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @ORM\Column(name="type", type="MaterielType", nullable=false)
      * @DoctrineAssert\Enum(entity="AppBundle\DBAL\Types\MaterielType")
      */
     private $type;
-
     
     /**
      * @var string
@@ -36,35 +30,30 @@ class Materiel
      * @ORM\Column(name="intitule", type="string", length=255)
      */
     private $intitule;
-
     /**
      * @var string
      *
      * @ORM\Column(name="autre", type="string", length=255, nullable=true)
      */
     private $autre;
-
     /**
      * @var string
      *
      * @ORM\Column(name="description", type="text")
      */
     private $description;
-
     /**
      * @var bool
      *
      * @ORM\Column(name="disponible", type="boolean")
      */
     private $disponible;
-
     /**
      * @var int
      *
      * @ORM\Column(name="prix", type="integer", nullable = true)
      */
     private $prix;
-
     /**
      * Get id
      *
@@ -74,7 +63,6 @@ class Materiel
     {
         return $this->id;
     }
-
     /**
      * Set type
      *
@@ -84,10 +72,8 @@ class Materiel
     public function setType($type)
     {
         $this->type = $type;
-
         return $this;
     }
-
     /**
      * Get type
      *
@@ -96,7 +82,6 @@ class Materiel
     {
         return $this->type;
     }
-
     /**
      * Set autre
      *
@@ -107,10 +92,8 @@ class Materiel
     public function setAutre($autre)
     {
         $this->autre = $autre;
-
         return $this;
     }
-
     /**
      * Get autre
      *
@@ -120,7 +103,6 @@ class Materiel
     {
         return $this->autre;
     }
-
     /**
      * Set description
      *
@@ -131,10 +113,8 @@ class Materiel
     public function setDescription($description)
     {
         $this->description = $description;
-
         return $this;
     }
-
     /**
      * Get description
      *
@@ -144,7 +124,6 @@ class Materiel
     {
         return $this->description;
     }
-
     /**
      * Set disponible
      *
@@ -155,10 +134,8 @@ class Materiel
     public function setDisponible($disponible)
     {
         $this->disponible = $disponible;
-
         return $this;
     }
-
     /**
      * Get disponible
      *
@@ -168,7 +145,6 @@ class Materiel
     {
         return $this->disponible;
     }
-
     /**
      * Set intitule
      *
@@ -179,10 +155,8 @@ class Materiel
     public function setIntitule($intitule)
     {
         $this->intitule = $intitule;
-
         return $this;
     }
-
     /**
      * Get intitule
      *
@@ -192,7 +166,6 @@ class Materiel
     {
         return $this->intitule;
     }
-
     /**
      * Set prix
      *
@@ -203,10 +176,8 @@ class Materiel
     public function setPrix($prix)
     {
         $this->prix = $prix;
-
         return $this;
     }
-
     /**
      * Get prix
      *

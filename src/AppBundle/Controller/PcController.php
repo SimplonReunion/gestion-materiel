@@ -27,7 +27,7 @@ class PcController extends Controller {
         $em = $this->getDoctrine()->getManager();
 
         $pcs = $em->getRepository('AppBundle:Pc')->findAll();
-
+        
         return $this->render('pc/index.html.twig', array(
                     'pcs' => $pcs,
         ));
