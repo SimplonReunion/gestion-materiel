@@ -11,6 +11,7 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Type</th>
                             <th>Intitulé</th>
                             <th>Autre</th>
@@ -21,8 +22,10 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% set count = 1 %}
                         {% for materiel in materiels %}
                             <tr>
+                                <td>{{ count }}</td>
                                 <td>{{ materiel.type }}</td>
                                 <td>{{ materiel.intitule }}</td>
                                 <td>{{ materiel.autre }}</td>
@@ -40,6 +43,7 @@
                                     </ul>
                                 </td>
                             </tr>
+                            {% set count = count + 1 %}
                         {% endfor %}
                     </tbody>
                 </table>

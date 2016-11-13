@@ -10,6 +10,7 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Boitier</th>
                             <th>Alimentation</th>
                             <th>Hdd</th>
@@ -26,8 +27,10 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% set count = 1 %}
                         {% for pc in pcs %}
                             <tr>
+                                <td>{{ count }}</td>
                                 <td>{{ pc.boitier }}</td>
                                 <td>{{ pc.alimentation }}</td>
                                 <td>{{ pc.hdd }}</td>
@@ -42,6 +45,7 @@
                                 <td>{{ pc.ecran }}</td>
                                 <td>{{ pc.prix }}</td>
                             </tr>
+                            {% set count = count + 1 %}
                         {% endfor %}
                     </tbody>
                 </table>

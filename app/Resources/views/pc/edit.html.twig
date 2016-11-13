@@ -1,136 +1,176 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Pc edit</h1>
 
-        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') and  is_granted('ROLE_CHEF_ATELIER') %}
-            <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ pc.id }}</td>
-            </tr>
-            <tr>
-                <th>Boitier</th>
-                <td>{{ pc.boitier }}</td>
-            </tr>
-            <tr>
-                <th>Alimentation</th>
-                <td>{{ pc.alimentation }}</td>
-            </tr>
-            <tr>
-                <th>Hdd</th>
-                <td>{{ pc.hdd }}</td>
-            </tr>
-            <tr>
-                <th>Ssd</th>
-                <td>{{ pc.ssd }}</td>
-            </tr>
-            <tr>
-                <th>Graveur</th>
-                <td>{{ pc.graveur }}</td>
-            </tr>
-            <tr>
-                <th>Processeur</th>
-                <td>{{ pc.processeur }}</td>
-            </tr>
-            <tr>
-                <th>Cartemere</th>
-                <td>{{ pc.carteMere }}</td>
-            </tr>
-            <tr>
-                <th>Memoire</th>
-                <td>{{ pc.memoire }}</td>
-            </tr>
-            <tr>
-                <th>Radiateur</th>
-                <td>{{ pc.radiateur }}</td>
-            </tr>
-            <tr>
-                <th>Systemeexploitation</th>
-                <td>{{ pc.systemeExploitation }}</td>
-            </tr>
-            <tr>
-                <th>Prix</th>
-                <td>{{ pc.prix }}</td>
-            </tr>
-            <tr>
-                <th>Vendable</th>
-                <td>{% if pc.vendable %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Cartegraphique</th>
-                <td>{{ pc.carteGraphique }}</td>
-            </tr>
-            <tr>
-                <th>Ecran</th>
-                <td>{{ pc.ecran }}</td>
-            </tr>
-        </tbody>
-    </table>
-                {{ form_label(edit_form.prix) }}
-    {{ form_widget(edit_form.prix) }}
-    {{ form_errors(edit_form.prix) }}
-    
-    {{ form_label(edit_form.vendable) }}
-    {{ form_widget(edit_form.vendable) }}
-    {{ form_errors(edit_form.vendable) }}
-    
-    {% else %}
-        
-    {{ form_start(edit_form) }}
-    {{ form_label(edit_form.boitier) }}
-    {{ form_widget(edit_form.boitier) }}
-    {{ form_errors(edit_form.boitier) }}
-    {{ form_label(edit_form.alimentation) }}
-    {{ form_widget(edit_form.alimentation) }}
-    {{ form_errors(edit_form.alimentation) }}
-    {{ form_label(edit_form.hdd) }}
-    {{ form_widget(edit_form.hdd) }}
-    {{ form_errors(edit_form.hdd) }}
-    {{ form_label(edit_form.ssd) }}
-    {{ form_widget(edit_form.ssd) }}
-    {{ form_errors(edit_form.ssd) }}
-    {{ form_label(edit_form.graveur) }}
-    {{ form_widget(edit_form.graveur) }}
-    {{ form_errors(edit_form.graveur) }}
-    {{ form_label(edit_form.processeur) }}
-    {{ form_widget(edit_form.processeur) }}
-    {{ form_errors(edit_form.processeur) }}
-    {{ form_label(edit_form.carteMere) }}
-    {{ form_widget(edit_form.carteMere) }}
-    {{ form_errors(edit_form.carteMere) }}
-    {{ form_label(edit_form.memoire) }}
-    {{ form_widget(edit_form.memoire) }}
-    {{ form_errors(edit_form.memoire) }}
-    {{ form_label(edit_form.radiateur) }}
-    {{ form_widget(edit_form.radiateur) }}
-    {{ form_errors(edit_form.radiateur) }}
-    {{ form_label(edit_form.systemeExploitation) }}
-    {{ form_widget(edit_form.systemeExploitation) }}
-    {{ form_errors(edit_form.systemeExploitation) }}
-    {{ form_label(edit_form.carteGraphique) }}
-    {{ form_widget(edit_form.carteGraphique) }}
-    {{ form_errors(edit_form.carteGraphique) }}
-    {{ form_label(edit_form.ecran) }}
-    {{ form_widget(edit_form.ecran) }}
-    {{ form_errors(edit_form.ecran) }}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
 
-    {{ form_label(edit_form.vendable) }}
-    {{ form_widget(edit_form.vendable) }}
-    {{ form_errors(edit_form.vendable) }}
-    {% endif %}
-        <input type="submit" value="Edit" />
-    {#{ form_end(edit_form) }#}
+                <h1 class="text-center">Pc edit</h1>
 
-    <ul>
-        <li>
-            <a href="{{ path('pc_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') and  is_granted('ROLE_CHEF_ATELIER') %}
+                    <table class="table table-striped">
+
+                        <tbody>
+                            <tr>
+                                <th>Boitier</th>
+                                <td>{{ pc.boitier }}</td>
+                            </tr>
+                            <tr>
+                                <th>Alimentation</th>
+                                <td>{{ pc.alimentation }}</td>
+                            </tr>
+                            <tr>
+                                <th>Hdd</th>
+                                <td>{{ pc.hdd }}</td>
+                            </tr>
+                            <tr>
+                                <th>Ssd</th>
+                                <td>{{ pc.ssd }}</td>
+                            </tr>
+                            <tr>
+                                <th>Graveur</th>
+                                <td>{{ pc.graveur }}</td>
+                            </tr>
+                            <tr>
+                                <th>Processeur</th>
+                                <td>{{ pc.processeur }}</td>
+                            </tr>
+                            <tr>
+                                <th>Cartemere</th>
+                                <td>{{ pc.carteMere }}</td>
+                            </tr>
+                            <tr>
+                                <th>Memoire</th>
+                                <td>{{ pc.memoire }}</td>
+                            </tr>
+                            <tr>
+                                <th>Radiateur</th>
+                                <td>{{ pc.radiateur }}</td>
+                            </tr>
+                            <tr>
+                                <th>Systemeexploitation</th>
+                                <td>{{ pc.systemeExploitation }}</td>
+                            </tr>
+                            <tr>
+                                <th>Prix</th>
+                                <td>{{ pc.prix }}</td>
+                            </tr>
+                            <tr>
+                                <th>Vendable</th>
+                                <td>{% if pc.vendable %}Yes{% else %}No{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <th>Cartegraphique</th>
+                                <td>{{ pc.carteGraphique }}</td>
+                            </tr>
+                            <tr>
+                                <th>Ecran</th>
+                                <td>{{ pc.ecran }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                {% endif %}
+
+
+
+                {{ form_start(edit_form) }}
+
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') and  is_granted('ROLE_CHEF_ATELIER') %}
+                    <div class="hidden">
+                    {% endif %}
+                    <div class="form-group">
+                        {{ form_label(edit_form.boitier) }}
+                        {{ form_widget(edit_form.boitier) }}
+                        {{ form_errors(edit_form.boitier) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.alimentation) }}
+                        {{ form_widget(edit_form.alimentation) }}
+                        {{ form_errors(edit_form.alimentation) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.hdd) }}
+                        {{ form_widget(edit_form.hdd) }}
+                        {{ form_errors(edit_form.hdd) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.ssd) }}
+                        {{ form_widget(edit_form.ssd) }}
+                        {{ form_errors(edit_form.ssd) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.graveur) }}
+                        {{ form_widget(edit_form.graveur) }}
+                        {{ form_errors(edit_form.graveur) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.processeur) }}
+                        {{ form_widget(edit_form.processeur) }}
+                        {{ form_errors(edit_form.processeur) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.carteMere) }}
+                        {{ form_widget(edit_form.carteMere) }}
+                        {{ form_errors(edit_form.carteMere) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.memoire) }}
+                        {{ form_widget(edit_form.memoire) }}
+                        {{ form_errors(edit_form.memoire) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.radiateur) }}
+                        {{ form_widget(edit_form.radiateur) }}
+                        {{ form_errors(edit_form.radiateur) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.systemeExploitation) }}
+                        {{ form_widget(edit_form.systemeExploitation) }}
+                        {{ form_errors(edit_form.systemeExploitation) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.carteGraphique) }}
+                        {{ form_widget(edit_form.carteGraphique) }}
+                        {{ form_errors(edit_form.carteGraphique) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.ecran) }}
+                        {{ form_widget(edit_form.ecran) }}
+                        {{ form_errors(edit_form.ecran) }}
+                    </div>
+                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') and  is_granted('ROLE_CHEF_ATELIER') %}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.prix) }}
+                        {{ form_widget(edit_form.prix) }}
+                        {{ form_errors(edit_form.prix) }}
+                    </div>
+                {% endif %}
+                <div class="form-group">
+                    {{ form_label(edit_form.vendable) }}
+                    {{ form_widget(edit_form.vendable) }}
+                    {{ form_errors(edit_form.vendable) }}
+                </div>
+                <input class="btn btn-default" type="submit" value="Edit" />
+                {#{ form_end(edit_form) }#}
+
+                <a href="{{ path('pc_index') }}">Back to the list</a>
+
+                <!-- <ul>
+                    <li>
+                        <a href="{{ path('pc_index') }}">Back to the list</a>
+                    </li>
+                    <li>
+                {#{{ form_start(delete_form) }}
+                    <input type="submit" value="Delete">
+                {{ form_end(delete_form) }}#}
+           </li>
+       </ul> -->
+
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
