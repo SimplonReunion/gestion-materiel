@@ -5,12 +5,12 @@
         <div class="row">
             <div class="col-md-12">
 
-                <h1>Pcs list</h1>
+                <h1 class="text-center">Pcs list</h1>
 
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Id</th>
+                            <th>#</th>
                             <th>Boitier</th>
                             <th>Alimentation</th>
                             <th>Hdd</th>
@@ -27,9 +27,10 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% set count = 1 %}
                         {% for pc in pcs %}
                             <tr>
-                                <td><a href="{{ path('pc_show', { 'id': pc.id }) }}">{{ pc.id }}</a></td>
+                                <td>{{ count }}</td>
                                 <td>{{ pc.boitier }}</td>
                                 <td>{{ pc.alimentation }}</td>
                                 <td>{{ pc.hdd }}</td>
@@ -44,6 +45,7 @@
                                 <td>{{ pc.ecran }}</td>
                                 <td>{{ pc.prix }}</td>
                             </tr>
+                            {% set count = count + 1 %}
                         {% endfor %}
                     </tbody>
                 </table>

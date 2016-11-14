@@ -1,59 +1,69 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Pc creation</h1>
 
-    {{ form_start(form) }}
-    {{ form_label(form.boitier) }}
-    {{ form_widget(form.boitier) }}
-    {{ form_errors(form.boitier) }}
-    {{ form_label(form.alimentation) }}
-    {{ form_widget(form.alimentation) }}
-    {{ form_errors(form.alimentation) }}
-    {{ form_label(form.hdd) }}
-    {{ form_widget(form.hdd) }}
-    {{ form_errors(form.hdd) }}
-    {{ form_label(form.ssd) }}
-    {{ form_widget(form.ssd) }}
-    {{ form_errors(form.ssd) }}
-    {{ form_label(form.graveur) }}
-    {{ form_widget(form.graveur) }}
-    {{ form_errors(form.graveur) }}
-    {{ form_label(form.processeur) }}
-    {{ form_widget(form.processeur) }}
-    {{ form_errors(form.processeur) }}
-    {{ form_label(form.carteMere) }}
-    {{ form_widget(form.carteMere) }}
-    {{ form_errors(form.carteMere) }}
-    {{ form_label(form.memoire) }}
-    {{ form_widget(form.memoire) }}
-    {{ form_errors(form.memoire) }}
-    {{ form_label(form.radiateur) }}
-    {{ form_widget(form.radiateur) }}
-    {{ form_errors(form.radiateur) }}
-    {{ form_label(form.systemeExploitation) }}
-    {{ form_widget(form.systemeExploitation) }}
-    {{ form_errors(form.systemeExploitation) }}
-    {{ form_label(form.carteGraphique) }}
-    {{ form_widget(form.carteGraphique) }}
-    {{ form_errors(form.carteGraphique) }}
-    {{ form_label(form.ecran) }}
-    {{ form_widget(form.ecran) }}
-    {{ form_errors(form.ecran) }}
-    {{ form_label(form.prix) }}
-    {{ form_widget(form.prix) }}
-    {{ form_errors(form.prix) }}
-    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') and  is_granted('ROLE_CHEF_ATELIER') %}
-    {{ form_label(form.vendable) }}
-    {{ form_widget(form.vendable) }}
-    {{ form_errors(form.vendable) }}
-    {% endif %}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('pc_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <h1 class="text-center">Pc creation</h1>
+
+                {{ form_start(form) }}
+                {{ form_label(form.boitier) }}
+                {{ form_widget(form.boitier) }}
+                {{ form_errors(form.boitier) }}
+                {{ form_label(form.alimentation) }}
+                {{ form_widget(form.alimentation) }}
+                {{ form_errors(form.alimentation) }}
+                {{ form_label(form.hdd) }}
+                {{ form_widget(form.hdd) }}
+                {{ form_errors(form.hdd) }}
+                {{ form_label(form.ssd) }}
+                {{ form_widget(form.ssd) }}
+                {{ form_errors(form.ssd) }}
+                {{ form_label(form.graveur) }}
+                {{ form_widget(form.graveur) }}
+                {{ form_errors(form.graveur) }}
+                {{ form_label(form.processeur) }}
+                {{ form_widget(form.processeur) }}
+                {{ form_errors(form.processeur) }}
+                {{ form_label(form.carteMere) }}
+                {{ form_widget(form.carteMere) }}
+                {{ form_errors(form.carteMere) }}
+                {{ form_label(form.memoire) }}
+                {{ form_widget(form.memoire) }}
+                {{ form_errors(form.memoire) }}
+                {{ form_label(form.radiateur) }}
+                {{ form_widget(form.radiateur) }}
+                {{ form_errors(form.radiateur) }}
+                {{ form_label(form.systemeExploitation) }}
+                {{ form_widget(form.systemeExploitation) }}
+                {{ form_errors(form.systemeExploitation) }}
+                {{ form_label(form.carteGraphique) }}
+                {{ form_widget(form.carteGraphique) }}
+                {{ form_errors(form.carteGraphique) }}
+                {{ form_label(form.ecran) }}
+                {{ form_widget(form.ecran) }}
+                {{ form_errors(form.ecran) }}
+                {{ form_label(form.prix) }}
+                {{ form_widget(form.prix) }}
+                {{ form_errors(form.prix) }}
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') and  is_granted('ROLE_CHEF_ATELIER') %}
+                    {{ form_label(form.vendable) }}
+                    {{ form_widget(form.vendable) }}
+                    {{ form_errors(form.vendable) }}
+                {% endif %}
+                <input type="submit" value="Create" />
+                {{ form_end(form) }}
+
+                <ul>
+                    <li>
+                        <a href="{{ path('pc_index') }}">Back to the list</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
 {% endblock %}

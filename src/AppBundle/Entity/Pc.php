@@ -1,9 +1,6 @@
 <?php
-
 namespace AppBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Pc
  *
@@ -20,109 +17,90 @@ class Pc
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      *
      * @ORM\Column(name="boitier", type="string", length=255, nullable = true)
      */
     private $boitier;
-
     /**
      * @var string
      *
      * @ORM\Column(name="alimentation", type="string", length=255, nullable = true)
      */
     private $alimentation;
-
     /**
      * @var string
      *
      * @ORM\Column(name="hdd", type="string", length=255, nullable = true)
      */
     private $hdd;
-
     /**
      * @var string
      *
      * @ORM\Column(name="ssd", type="string", length=255, nullable = true)
      */
     private $ssd;
-
     /**
      * @var string
      *
      * @ORM\Column(name="graveur", type="string", length=255, nullable = true)
      */
     private $graveur;
-
     /**
      * @var string
      *
      * @ORM\Column(name="processeur", type="string", length=255, nullable = true)
      */
     private $processeur;
-
     /**
      * @var string
      *
      * @ORM\Column(name="carteMere", type="string", length=255, nullable = true)
      */
     private $carteMere;
-
     /**
      * @var string
      *
      * @ORM\Column(name="memoire", type="string", length=255, nullable = true)
      */
     private $memoire;
-
     /**
      * @var string
      *
      * @ORM\Column(name="radiateur", type="string", length=255, nullable = true)
      */
     private $radiateur;
-
     /**
      * @var string
      *
      * @ORM\Column(name="systemeExploitation", type="string", length=255, nullable = true)
      */
     private $systemeExploitation;
-
     /**
      * @var int
      *
      * @ORM\Column(name="prix", type="integer", nullable = true)
      */
     private $prix;
-
     /**
      * @var string
      *
      * @ORM\Column(name="vendable", type="string", length=255, nullable = true)
      */
     private $vendable;
-
-
-
     /**
      * @var string
      *
      * @ORM\Column(name="carteGraphique", type="string", length=255, nullable = true)
      */
     private $carteGraphique;
-
     /**
      * @var string
      *
      * @ORM\Column(name="ecran", type="string", length=255, nullable = true)
      */
     private $ecran;
-
-
-
     /**
      * Get id
      *
@@ -132,7 +110,6 @@ class Pc
     {
         return $this->id;
     }
-
     /**
      * Set boitier
      *
@@ -143,10 +120,8 @@ class Pc
     public function setBoitier($boitier)
     {
         $this->boitier = $boitier;
-
         return $this;
     }
-
     /**
      * Get boitier
      *
@@ -156,7 +131,6 @@ class Pc
     {
         return $this->boitier;
     }
-
     /**
      * Set alimentation
      *
@@ -167,10 +141,8 @@ class Pc
     public function setAlimentation($alimentation)
     {
         $this->alimentation = $alimentation;
-
         return $this;
     }
-
     /**
      * Get alimentation
      *
@@ -180,7 +152,6 @@ class Pc
     {
         return $this->alimentation;
     }
-
     /**
      * Set hdd
      *
@@ -191,10 +162,8 @@ class Pc
     public function setHdd($hdd)
     {
         $this->hdd = $hdd;
-
         return $this;
     }
-
     /**
      * Get hdd
      *
@@ -204,7 +173,6 @@ class Pc
     {
         return $this->hdd;
     }
-
     /**
      * Set ssd
      *
@@ -215,10 +183,8 @@ class Pc
     public function setSsd($ssd)
     {
         $this->ssd = $ssd;
-
         return $this;
     }
-
     /**
      * Get ssd
      *
@@ -228,7 +194,6 @@ class Pc
     {
         return $this->ssd;
     }
-
     /**
      * Set graveur
      *
@@ -239,10 +204,8 @@ class Pc
     public function setGraveur($graveur)
     {
         $this->graveur = $graveur;
-
         return $this;
     }
-
     /**
      * Get graveur
      *
@@ -252,7 +215,6 @@ class Pc
     {
         return $this->graveur;
     }
-
     /**
      * Set processeur
      *
@@ -263,10 +225,8 @@ class Pc
     public function setProcesseur($processeur)
     {
         $this->processeur = $processeur;
-
         return $this;
     }
-
     /**
      * Get processeur
      *
@@ -276,7 +236,6 @@ class Pc
     {
         return $this->processeur;
     }
-
     /**
      * Set carteMere
      *
@@ -287,10 +246,8 @@ class Pc
     public function setCarteMere($carteMere)
     {
         $this->carteMere = $carteMere;
-
         return $this;
     }
-
     /**
      * Get carteMere
      *
@@ -300,7 +257,6 @@ class Pc
     {
         return $this->carteMere;
     }
-
     /**
      * Set memoire
      *
@@ -311,10 +267,8 @@ class Pc
     public function setMemoire($memoire)
     {
         $this->memoire = $memoire;
-
         return $this;
     }
-
     /**
      * Get memoire
      *
@@ -324,7 +278,6 @@ class Pc
     {
         return $this->memoire;
     }
-
     /**
      * Set radiateur
      *
@@ -335,10 +288,8 @@ class Pc
     public function setRadiateur($radiateur)
     {
         $this->radiateur = $radiateur;
-
         return $this;
     }
-
     /**
      * Get radiateur
      *
@@ -348,7 +299,6 @@ class Pc
     {
         return $this->radiateur;
     }
-
     /**
      * Set systemeExploitation
      *
@@ -359,10 +309,8 @@ class Pc
     public function setSystemeExploitation($systemeExploitation)
     {
         $this->systemeExploitation = $systemeExploitation;
-
         return $this;
     }
-
     /**
      * Get systemeExploitation
      *
@@ -372,7 +320,6 @@ class Pc
     {
         return $this->systemeExploitation;
     }
-
     /**
      * Set prix
      *
@@ -383,10 +330,8 @@ class Pc
     public function setPrix($prix)
     {
         $this->prix = $prix;
-
         return $this;
     }
-
     /**
      * Get prix
      *
@@ -396,8 +341,6 @@ class Pc
     {
         return $this->prix;
     }
-
-
     /**
      * Set carteGraphique
      *
@@ -408,10 +351,8 @@ class Pc
     public function setCarteGraphique($carteGraphique)
     {
         $this->carteGraphique = $carteGraphique;
-
         return $this;
     }
-
     /**
      * Get carteGraphique
      *
@@ -421,7 +362,6 @@ class Pc
     {
         return $this->carteGraphique;
     }
-
     /**
      * Set ecran
      *
@@ -432,10 +372,8 @@ class Pc
     public function setEcran($ecran)
     {
         $this->ecran = $ecran;
-
         return $this;
     }
-
     /**
      * Get ecran
      *
@@ -445,7 +383,6 @@ class Pc
     {
         return $this->ecran;
     }
-
     /**
      * Set vendable
      *
@@ -456,10 +393,8 @@ class Pc
     public function setVendable($vendable)
     {
         $this->vendable = $vendable;
-
         return $this;
     }
-
     /**
      * Get vendable
      *

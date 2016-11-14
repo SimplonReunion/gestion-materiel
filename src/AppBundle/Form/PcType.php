@@ -22,8 +22,9 @@ class PcType extends AbstractType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
-
-        $builder->add('boitier')
+        
+        
+     $builder->add('boitier')
                 ->add('alimentation')
                 ->add('hdd')
                 ->add('ssd')

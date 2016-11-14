@@ -1,65 +1,78 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Pcs list</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Boitier</th>
-                <th>Alimentation</th>
-                <th>Hdd</th>
-                <th>Ssd</th>
-                <th>Graveur</th>
-                <th>Processeur</th>
-                <th>Cartemere</th>
-                <th>Memoire</th>
-                <th>Radiateur</th>
-                <th>Systemeexploitation</th>
-                <th>Prix</th>
-                <th>Statut</th>
-                <th>Cartegraphique</th>
-                <th>Ecran</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for pc in pcs %}
-            <tr>
-                <td><a href="{{ path('pc_show', { 'id': pc.id }) }}">{{ pc.id }}</a></td>
-                <td>{{ pc.boitier }}</td>
-                <td>{{ pc.alimentation }}</td>
-                <td>{{ pc.hdd }}</td>
-                <td>{{ pc.ssd }}</td>
-                <td>{{ pc.graveur }}</td>
-                <td>{{ pc.processeur }}</td>
-                <td>{{ pc.carteMere }}</td>
-                <td>{{ pc.memoire }}</td>
-                <td>{{ pc.radiateur }}</td>
-                <td>{{ pc.systemeExploitation }}</td>
-                <td>{{ pc.prix }}</td>
-                <td>{{ pc.vendable }}</td>
-                <td>{{ pc.carteGraphique }}</td>
-                <td>{{ pc.ecran }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('pc_show', { 'id': pc.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('pc_edit', { 'id': pc.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
 
-    <ul>
-        <li>
-            <a href="{{ path('pc_new') }}">Create a new pc</a>
-        </li>
-    </ul>
+                <h1 class="text-center">Pcs list</h1>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Boitier</th>
+                            <th>Alimentation</th>
+                            <th>Hdd</th>
+                            <th>Ssd</th>
+                            <th>Graveur</th>
+                            <th>Processeur</th>
+                            <th>Cartemere</th>
+                            <th>Memoire</th>
+                            <th>Radiateur</th>
+                            <th>Systemeexploitation</th>
+                            <th>Prix</th>
+                            <th>Statut</th>
+                            <th>Cartegraphique</th>
+                            <th>Ecran</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% set count = 1 %}
+                        {% for pc in pcs %}
+
+                            <tr>
+                                <td>{{ count }}</td>
+                                <td>{{ pc.boitier }}</td>
+                                <td>{{ pc.alimentation }}</td>
+                                <td>{{ pc.hdd }}</td>
+                                <td>{{ pc.ssd }}</td>
+                                <td>{{ pc.graveur }}</td>
+                                <td>{{ pc.processeur }}</td>
+                                <td>{{ pc.carteMere }}</td>
+                                <td>{{ pc.memoire }}</td>
+                                <td>{{ pc.radiateur }}</td>
+                                <td>{{ pc.systemeExploitation }}</td>
+                                <td>{{ pc.prix }}</td>
+                                <td>{{ pc.vendable }}</td>
+                                <td>{{ pc.carteGraphique }}</td>
+                                <td>{{ pc.ecran }}</td>
+                                <td>
+                                    <ul>
+                                        <li>
+                                            <a href="{{ path('pc_show', { 'id': pc.id }) }}">show</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('pc_edit', { 'id': pc.id }) }}">edit</a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            {% set count = count + 1 %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <ul>
+                    <li>
+                        <a href="{{ path('pc_new') }}">Create a new pc</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

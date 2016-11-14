@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Pc;
+use AppBundle\Entity\Materiel;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -40,13 +41,14 @@ class PcController extends Controller {
      */
     public function newAction(Request $request) {
         $pc = new Pc();
+        $materiel = new Materiel();
 
         // Get our "authorization_checker" Object
-       $auth_checker = $this->get('security.authorization_checker');
-       // Check for Roles on the $auth_checker
-       $isRoleChef = $auth_checker->isGranted('ROLE_CHEF_ATELIER');
-       // Test if user have ROLE_CHEF_ATELIER
-       $isRoleTech = $auth_checker->isGranted('ROLE_TECH');
+        $auth_checker = $this->get('security.authorization_checker');
+        // Check for Roles on the $auth_checker
+        $isRoleChef = $auth_checker->isGranted('ROLE_CHEF_ATELIER');
+        // Test if user have ROLE_CHEF_ATELIER
+        $isRoleTech = $auth_checker->isGranted('ROLE_TECH');
 
 
         $em = $this->getDoctrine()->getManager();
@@ -58,46 +60,45 @@ class PcController extends Controller {
         $ssd = array();
         $graveur = array();
         $processeur = array();
-        $carte_mere = array();
+        $carteMere = array();
         $memoire = array();
         $radiateur = array();
-        $systeme_exploitation = array();
-        $carte_graphique = array();
+        $systemeExploitation = array('Windows 10' => 'windows', 'Ubuntu' => 'ubuntu', 'Aucun' => 'aucun');
+        $carteGraphique = array();
         $ecran = array();
         $autre = array();
-        $vendable = array();
-
 
         foreach ($materiels as $value) {
+
+            $materielId = $value->getId();
             if ($value->getType() == "BOITIER") {
-                $boitier[$value->getIntitule()] = $value->getIntitule();
+                $boitier[$value->getIntitule()] = $materielId;
             }
             if ($value->getType() == "ALIMENTATION") {
-                $alimentation[$value->getIntitule()] = $value->getIntitule();
+                $alimentation[$value->getIntitule()] = $materielId;
             }
             if ($value->getType() == "HDD") {
-                $hdd[$value->getIntitule()] = $value->getIntitule();
+                $hdd[$value->getIntitule()] = $materielId;
             } if ($value->getType() == "SSD") {
-                $ssd[$value->getIntitule()] = $value->getIntitule();
+                $ssd[$value->getIntitule()] = $materielId;
             } if ($value->getType() == "GRAVEUR") {
-                $graveur[$value->getIntitule()] = $value->getIntitule();
+                $graveur[$value->getIntitule()] = $materielId;
             } if ($value->getType() == "PROCESSEUR") {
-                $processeur[$value->getIntitule()] = $value->getIntitule();
+                $processeur[$value->getIntitule()] = $materielId;
             } if ($value->getType() == "CARTE MERE") {
-                $carte_mere[$value->getIntitule()] = $value->getIntitule();
+                $carteMere[$value->getIntitule()] = $materielId;
             } if ($value->getType() == "MEMOIRE") {
-                $memoire[$value->getIntitule()] = $value->getIntitule();
+                $memoire[$value->getIntitule()] = $materielId;
             } if ($value->getType() == "RADIATEUR") {
-                $radiateur[$value->getIntitule()] = $value->getIntitule();
+                $radiateur[$value->getIntitule()] = $materielId;
             }
             if ($value->getType() == "CARTE GRAPHIQUE") {
-                $carte_graphique[$value->getIntitule()] = $value->getIntitule();
+                $carteGraphique[$value->getIntitule()] = $materielId;
             } if ($value->getType() == "AUTRE") {
-                $autre[$value->getIntitule()] = $value->getIntitule();
+                $autre[$value->getIntitule()] = $materielId;
             }
         }
-        if ($isRoleTech) {
-          # code...
+
         $form = $this->createFormBuilder($pc)
                 ->add('boitier', ChoiceType::class, array(
                     'choices' => $boitier
@@ -118,7 +119,7 @@ class PcController extends Controller {
                     'choices' => $processeur
                 ))
                 ->add('carteMere', ChoiceType::class, array(
-                    'choices' => $carte_mere
+                    'choices' => $carteMere
                 ))
                 ->add('memoire', ChoiceType::class, array(
                     'choices' => $memoire
@@ -127,82 +128,38 @@ class PcController extends Controller {
                     'choices' => $radiateur
                 ))
                 ->add('systemeExploitation', ChoiceType::class, array(
-                    'choices' => $systeme_exploitation
+                    'choices' => $systemeExploitation
                 ))
                 ->add('carteGraphique', ChoiceType::class, array(
-                    'choices' => $carte_graphique
+                    'choices' => $carteGraphique
                 ))
                 ->add('ecran', ChoiceType::class, array(
                     'choices' => $ecran
                 ))
                 ->add('vendable', ChoiceType::class, array(
-                    'choices' => array ('pret à être vendu' => 'pret à être vendu','non classé' => 'non classé')
+                    'choices' => ($isRoleChef ? array('pret à être vendu' => 'pret à être vendu', 'à vendre' => 'à vendre') : array('pret à être vendu' => 'pret à être vendu', 'non classé' => 'non classé'))
                 ))
-
-
-
                 ->add('prix')
                 ->getForm();
         $form->handleRequest($request);
-      }
-      if ($isRoleChef) {
-        # code...
-      $form = $this->createFormBuilder($pc)
-              ->add('boitier', ChoiceType::class, array(
-                  'choices' => $boitier
-              ))
-              ->add('alimentation', ChoiceType::class, array(
-                  'choices' => $alimentation
-              ))
-              ->add('hdd', ChoiceType::class, array(
-                  'choices' => $hdd
-              ))
-              ->add('ssd', ChoiceType::class, array(
-                  'choices' => $ssd
-              ))
-              ->add('graveur', ChoiceType::class, array(
-                  'choices' => $graveur
-              ))
-              ->add('processeur', ChoiceType::class, array(
-                  'choices' => $processeur
-              ))
-              ->add('carteMere', ChoiceType::class, array(
-                  'choices' => $carte_mere
-              ))
-              ->add('memoire', ChoiceType::class, array(
-                  'choices' => $memoire
-              ))
-              ->add('radiateur', ChoiceType::class, array(
-                  'choices' => $radiateur
-              ))
-              ->add('systemeExploitation', ChoiceType::class, array(
-                  'choices' => $systeme_exploitation
-              ))
-              ->add('carteGraphique', ChoiceType::class, array(
-                  'choices' => $carte_graphique
-              ))
-              ->add('ecran', ChoiceType::class, array(
-                  'choices' => $ecran
-              ))
-              ->add('vendable', ChoiceType::class, array(
-                  'choices' => array ('pret à être vendu' => 'pret à être vendu','à vendre' => 'à vendre')
-              ))
-
-
-
-              ->add('prix')
-              ->getForm();
-      $form->handleRequest($request);
-    }
-
-
-
-
-
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $types = array('boitier', 'alimentation', 'hdd', 'ssd', 'graveur', 'processeur', 'carteMere', 'memoire', 'radiateur', 'systemeExploitation', 'carteGraphique', 'ecran');
+
+            $typeId = array();
+            foreach ($types as $type) {
+                $typeId[] = $form[$type]->getData();
+            }
+
+            $materiels = $em->getRepository('AppBundle:Materiel')->findBy(['id' => $typeId]);
+
+            foreach ($materiels as $value) {
+                $value->setDisponible(0);
+            }
+
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($pc);
+
             $em->flush();
             return $this->redirectToRoute('pc_index');
         }
@@ -212,10 +169,6 @@ class PcController extends Controller {
                     'pc' => $pc,
                     'form' => $form->createView(),
         ));
-
-
-
-
 
 
 
@@ -260,12 +213,11 @@ class PcController extends Controller {
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Pc $pc)
-    {
+    private function createDeleteForm(Pc $pc) {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('pc_delete', array('id' => $pc->getId())))
-            ->setMethod('DELETE')
-            ->getForm();
+                        ->setAction($this->generateUrl('pc_delete', array('id' => $pc->getId())))
+                        ->setMethod('DELETE')
+                        ->getForm();
     }
 
     /**
@@ -275,22 +227,177 @@ class PcController extends Controller {
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Pc $pc) {
-        $deleteForm = $this->createDeleteForm($pc);
-        $editForm = $this->createForm('AppBundle\Form\PcType', $pc);
-        $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+        $materiel = new Materiel();
+        // $deleteForm = $this->createDeleteForm($pc);
+        // Get our "authorization_checker" Object
+        $auth_checker = $this->get('security.authorization_checker');
+        // Check for Roles on the $auth_checker
+        $isRoleChef = $auth_checker->isGranted('ROLE_CHEF_ATELIER');
+        // Test if user have ROLE_CHEF_ATELIER
+        $isRoleTech = $auth_checker->isGranted('ROLE_TECH');
 
 
-            return $this->redirectToRoute('pc_edit', array('id' => $pc->getId()));
+        $em = $this->getDoctrine()->getManager();
+        $materiels = $em->getRepository('AppBundle:Materiel')->findBy(['disponible' => 1]);
+
+        $boitier = array($pc->getBoitier() => $pc->getBoitier());
+        $alimentation = array($pc->getAlimentation() => $pc->getAlimentation());
+        $hdd = array($pc->getHdd() => $pc->getHdd());
+        $ssd = array($pc->getSsd() => $pc->getSsd());
+        $graveur = array($pc->getGraveur() => $pc->getGraveur());
+        $processeur = array($pc->getProcesseur() => $pc->getProcesseur());
+        $carteMere = array($pc->getCarteMere() => $pc->getCarteMere());
+        $memoire = array($pc->getMemoire() => $pc->getMemoire());
+        $radiateur = array($pc->getRadiateur() => $pc->getRadiateur());
+        $systemeExploitation = array_unique(array(ucfirst($pc->getSystemeExploitation()) => $pc->getSystemeExploitation(), 'Windows 10' => 'windows', 'Ubuntu' => 'ubuntu', 'Aucun' => 'aucun'));
+        $carteGraphique = array($pc->getCarteGraphique() => $pc->getCarteGraphique());
+        $ecran = array($pc->getEcran() => $pc->getEcran());
+        $autre = array();
+
+
+
+        foreach ($materiels as $value) {
+
+            $materielId = $value->getId();
+            if ($value->getType() == "BOITIER") {
+                $boitier[$value->getIntitule()] = $materielId;
+            }
+            if ($value->getType() == "ALIMENTATION") {
+                $alimentation[$value->getIntitule()] = $materielId;
+            }
+            if ($value->getType() == "HDD") {
+                $hdd[$value->getIntitule()] = $materielId;
+            } if ($value->getType() == "SSD") {
+                $ssd[$value->getIntitule()] = $materielId;
+            } if ($value->getType() == "GRAVEUR") {
+                $graveur[$value->getIntitule()] = $materielId;
+            } if ($value->getType() == "PROCESSEUR") {
+                $processeur[$value->getIntitule()] = $materielId;
+            } if ($value->getType() == "CARTE MERE") {
+                $carteMere[$value->getIntitule()] = $materielId;
+            } if ($value->getType() == "MEMOIRE") {
+                $memoire[$value->getIntitule()] = $materielId;
+            } if ($value->getType() == "RADIATEUR") {
+                $radiateur[$value->getIntitule()] = $materielId;
+            }
+            if ($value->getType() == "CARTE GRAPHIQUE") {
+                $carteGraphique[$value->getIntitule()] = $materielId;
+            } if ($value->getType() == "AUTRE") {
+                $autre[$value->getIntitule()] = $materielId;
+            }
         }
 
+
+
+        $form = $this->createFormBuilder($pc)
+                ->add('boitier', ChoiceType::class, array(
+                    'choices' => $boitier
+                ))
+                ->add('alimentation', ChoiceType::class, array(
+                    'choices' => $alimentation
+                ))
+                ->add('hdd', ChoiceType::class, array(
+                    'choices' => $hdd
+                ))
+                ->add('ssd', ChoiceType::class, array(
+                    'choices' => $ssd
+                ))
+                ->add('graveur', ChoiceType::class, array(
+                    'choices' => $graveur
+                ))
+                ->add('processeur', ChoiceType::class, array(
+                    'choices' => $processeur
+                ))
+                ->add('carteMere', ChoiceType::class, array(
+                    'choices' => $carteMere
+                ))
+                ->add('memoire', ChoiceType::class, array(
+                    'choices' => $memoire
+                ))
+                ->add('radiateur', ChoiceType::class, array(
+                    'choices' => $radiateur
+                ))
+                ->add('systemeExploitation', ChoiceType::class, array(
+                    'choices' => $systemeExploitation
+                ))
+                ->add('carteGraphique', ChoiceType::class, array(
+                    'choices' => $carteGraphique
+                ))
+                ->add('ecran', ChoiceType::class, array(
+                    'choices' => $ecran
+                ))
+                ->add('vendable', ChoiceType::class, array(
+                    'choices' => ($isRoleChef ? array('pret à être vendu' => 'pret à être vendu', 'à vendre' => 'à vendre') : array('pret à être vendu' => 'pret à être vendu', 'non classé' => 'non classé'))
+                ))
+                ->add('prix')
+                ->getForm();
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted()) {
+
+
+            $types = array('boitier', 'alimentation', 'hdd', 'ssd', 'graveur', 'processeur', 'carteMere', 'memoire', 'radiateur', 'systemeExploitation', 'carteGraphique', 'ecran');
+
+            $typeId = array();
+            foreach ($types as $type) {
+                $typeId[] = $form[$type]->getData();
+            }
+
+            $materiels = $em->getRepository('AppBundle:Materiel')->findBy(['id' => $typeId]);
+
+            foreach ($materiels as $value) {
+                $value->setDisponible(0);
+            }
+
+            $pc->setBoitier($form['boitier']->getData())
+                    ->setAlimentation($form['alimentation']->getData())
+                    ->setCarteGraphique($form['carteGraphique']->getData())
+                    ->setCarteMere($form['carteMere']->getData())
+                    ->setEcran($form['ecran']->getData())
+                    ->setGraveur($form['graveur']->getData())
+                    ->setHdd($form['hdd']->getData())
+                    ->setMemoire($form['memoire']->getData())
+                    ->setProcesseur($form['processeur']->getData())
+                    ->setRadiateur($form['radiateur']->getData())
+                    ->setSsd($form['ssd']->getData())
+                    ->setSystemeExploitation($form['systemeExploitation']->getData())
+                    ->setPrix($form['prix']->getData());
+
+
+            $em = $this->getDoctrine()->getEntityManager();
+            //$em->persist($pc);
+
+            $em->flush();
+            return $this->redirectToRoute('pc_index');
+        }
+
+        // Create the form view
         return $this->render('pc/edit.html.twig', array(
                     'pc' => $pc,
-                    'edit_form' => $editForm->createView(),
-                    'delete_form' => $deleteForm->createView(),
+                    'edit_form' => $form->createView(),
+                        //'delete_form' => $deleteForm->createView(),
         ));
+
+
+        /* $deleteForm = $this->createDeleteForm($pc);
+
+          $editForm = $this->createForm('AppBundle\Form\PcType', $pc);
+          $editForm->handleRequest($request);
+
+          if ($editForm->isSubmitted() && $editForm->isValid()) {
+          $this->getDoctrine()->getManager()->flush();
+
+
+          return $this->redirectToRoute('pc_edit', array('id' => $pc->getId()));
+          }
+
+          return $this->render('pc/edit.html.twig', array(
+          'pc' => $pc,
+          'edit_form' => $editForm->createView(),
+          'delete_form' => $deleteForm->createView(),
+          )); */
     }
 
     /**

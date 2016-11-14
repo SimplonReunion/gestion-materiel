@@ -1,49 +1,61 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Materiels list</h1>
 
-    <table>
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Type</th>
-            <th>Intitulé</th>
-            <th>Autre</th>
-            <th>Description</th>
-            <th>Prix</th>
-            <th>Disponible</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for materiel in materiels %}
-            <tr>
-                <td><a href="{{ path('materiel_show', { 'id': materiel.id }) }}">{{ materiel.id }}</a></td>
-                <td>{{ materiel.type }}</td>
-                <td>{{ materiel.intitule }}</td>
-                <td>{{ materiel.autre }}</td>
-                <td>{{ materiel.description }}</td>
-                <td>{{ materiel.prix }} € </td>
-                <td>{% if materiel.disponible %}Yes{% else %}No{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('materiel_show', { 'id': materiel.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('materiel_edit', { 'id': materiel.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
 
-    <ul>
-        <li>
-            <a href="{{ path('materiel_new') }}">Create a new materiel</a>
-        </li>
-    </ul>
+                <h1 class="text-center">Materiels list</h1>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Type</th>
+                            <th>Intitulé</th>
+                            <th>Autre</th>
+                            <th>Description</th>
+                            <th>Prix</th>
+                            <th>Disponible</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% set count = 1 %}
+                        {% for materiel in materiels %}
+                            <tr>
+                                <td>{{ count }}</td>
+                                <td>{{ materiel.type }}</td>
+                                <td>{{ materiel.intitule }}</td>
+                                <td>{{ materiel.autre }}</td>
+                                <td>{{ materiel.description }}</td>
+                                <td>{{ materiel.prix }} € </td>
+                                <td>{% if materiel.disponible %}Yes{% else %}No{% endif %}</td>
+                                <td>
+                                    <ul>
+                                        <li>
+                                            <a href="{{ path('materiel_show', { 'id': materiel.id }) }}">show</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('materiel_edit', { 'id': materiel.id }) }}">edit</a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            {% set count = count + 1 %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <ul>
+                    <li>
+                        <a href="{{ path('materiel_new') }}">Create a new materiel</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
