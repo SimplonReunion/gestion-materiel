@@ -23,3 +23,21 @@
         </div>
     </div>
 {% endblock %}
+
+{% block javascripts %}
+  {{parent()}}
+
+  <script>
+    // Afficher le champ autre quand on sélectionne "Autre" dans type matériel (le cache dans les autres cas)
+    $('#appbundle_materiel_autre').parent().hide();
+    $('#appbundle_materiel_type').change(function(evt){
+      var materielType = evt.currentTarget.value;
+      if(materielType == 'AUTRE'){
+        $('#appbundle_materiel_autre').parent().show();
+      }else{
+        $('#appbundle_materiel_autre').parent().hide();
+      }
+    });
+  </script>
+
+{% endblock %}
